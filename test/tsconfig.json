@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    // this file exists to skip emitting js for tests
+    "noEmit": true,
+    "esModuleInterop": true,
+    "typeRoots": ["../node_modules/@types", "../@types"]
+  },
+  "include": ["../@types", "./**/*.ts"]
+}
