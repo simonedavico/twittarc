@@ -1,5 +1,10 @@
+import ensureAuth from "@architect/shared/ensureAuth";
+import arc, { HttpRequest } from "@architect/functions";
+
+export const handler = arc.http.async(ensureAuth, tweets);
+
 // learn more about HTTP functions here: https://arc.codes/primitives/http
-export async function handler(req: unknown) {
+export async function tweets(req: HttpRequest) {
   return {
     statusCode: 200,
     headers: {
@@ -13,7 +18,7 @@ export async function handler(req: unknown) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello, Architect!</title>
+  <title>ZIO, Architect!</title>
   <style>
     * {
       margin: 0;
@@ -52,22 +57,12 @@ export async function handler(req: unknown) {
     <div class="margin-left-8">
       <div class="margin-bottom-16">
         <h1 class="margin-bottom-16">
-          Hello from Node.js!
+          Hello from ${req.session.account.name}
         </h1>
+        <a href=/logout>logout</a> <br>
         <p class="margin-bottom-8">
-          Get started by editing this file at:
+          One day I will show tweets
         </p>
-        <code>
-          src/http/{your function}/index.js
-        </code>
-      </div>
-      <div>
-        <p class="margin-bottom-8">
-          View documentation at:
-        </p>
-        <code>
-          <a class="color-grey color-black-link" href="https://arc.codes">https://arc.codes</a>
-        </code>
       </div>
     </div>
   </div>

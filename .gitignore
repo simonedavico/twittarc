@@ -2,3 +2,4 @@ node_modules/
 sam.json
 sam.yaml
 src/**/*.js
+.env
