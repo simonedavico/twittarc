@@ -1,6 +1,7 @@
 {
   "name": "get-tweets",
   "dependencies": {
-    "@architect/functions": "^3.13.9"
+    "@architect/functions": "^3.13.9",
+    "jsonwebtoken": "^8.5.1"
   }
 }

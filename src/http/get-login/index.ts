@@ -1,24 +1,35 @@
 import arc, { HttpHandler } from "@architect/functions";
+import jwt from "jsonwebtoken";
 import github from "./github";
 
 /**
- * POST /login
+ * GET /login
  *
- * Authenticates against GitHub
+ * Completes the GitHub OAuth flow initiated in the browser
+ * by verifying the state query param, obtaining a valid access token
+ * and retrieving account info
  */
 const authenticate: HttpHandler = async (req) => {
-  if (req.queryStringParameters.code) {
-    const account = await github({
-      code: req.queryStringParameters.code,
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      redirectUri: process.env.GITHUB_REDIRECT,
-    });
-    return {
-      statusCode: 302,
-      session: { account },
-      location: "/tweets",
-    };
+  const { code, state } = req.queryStringParameters;
+  if (code && state) {
+    return Promise.resolve(jwt.verify(state, process.env.APP_SECRET))
+      .then(async () => {
+        const account = await github({
+          code: req.queryStringParameters.code,
+          clientId: process.env.GITHUB_CLIENT_ID,
+          clientSecret: process.env.GITHUB_CLIENT_SECRET,
+          redirectUri: process.env.GITHUB_REDIRECT,
+        });
+        return {
+          statusCode: 302,
+          session: { account },
+          location: "/tweets",
+        };
+      })
+      .catch(() => ({
+        statusCode: 401,
+        body: "Not Authorized",
+      }));
   }
 
   return {

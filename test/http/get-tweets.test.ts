@@ -16,6 +16,16 @@ test("get /", async (t) => {
   t.ok(result, "got 200 OK");
 });
 
+test("get /tweets not authenticated", async (t) => {
+  t.plan(1);
+  try {
+    let url = "http://localhost:3333/tweets";
+    await tiny.get({ url });
+  } catch (e) {
+    t.ok(e.statusCode === 403, "not authorized");
+  }
+});
+
 // use the last spec as after hook, as tape does not have them
 test("sandbox.end", async (t) => {
   t.plan(1);
