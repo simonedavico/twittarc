@@ -1,0 +1,6 @@
+{
+  "name": "post-tweets",
+  "dependencies": {
+    "@architect/functions": "^3.13.9"
+  }
+}

@@ -3,7 +3,6 @@ import arc, { HttpRequest } from "@architect/functions";
 
 export const handler = arc.http.async(ensureAuth, tweets);
 
-// learn more about HTTP functions here: https://arc.codes/primitives/http
 export async function tweets(req: HttpRequest) {
   return {
     statusCode: 200,
@@ -65,8 +64,22 @@ export async function tweets(req: HttpRequest) {
         </p>
       </div>
     </div>
+    <form action="/tweets" onsubmit="onSubmit()" method="post" class="form-example">
+      <div class="form-example">
+        <label for="tweet">Tweet something: </label>
+        <input type="text" name="tweet" id="tweet" required>
+      </div>
+      <div class="form-example">
+        <input type="submit" value="Tweet">
+      </div>
+    </form>
   </div>
 </body>
+<script>
+    function onSubmit(e) {
+      e.preventDefault();
+    }
+</script>
 </html>
 `,
   };
