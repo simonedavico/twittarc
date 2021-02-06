@@ -14,18 +14,13 @@ export async function postTweet(req: HttpRequest) {
   const result = await saveTweet({
     accountId: req.session.account.login,
     publishedOn: new Date().toISOString(),
-    content: req.body.tweet,
+    content: req.body.tweet.content,
     name: req.session.account.name,
   });
-
-  // TODO: move to get tweets
-  // console.log({ result });
-  // const allTweets = await scan({});
-  // console.log(JSON.stringify(allTweets));
-
   return {
     statusCode: 201,
-    // TODO: should have a location header, but we do not have an API for tweet detail
+    // TODO: should have a location header,
+    // but we do not have an API for tweet detail
     json: {
       result,
     },

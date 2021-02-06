@@ -23,7 +23,7 @@ const authenticate: HttpHandler = async (req) => {
         return {
           statusCode: 302,
           session: { account },
-          location: "/tweets",
+          location: "/",
         };
       })
       .catch(() => ({

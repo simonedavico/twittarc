@@ -1,6 +1,11 @@
 import arc from "@architect/functions";
 
-export async function logout() {
+/**
+ * GET /logout
+ *
+ * Clears the session and redirects to homepage
+ */
+async function logout() {
   return {
     statusCode: 302,
     session: {},
