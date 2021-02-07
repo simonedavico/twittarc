@@ -1,12 +1,24 @@
 @app
 twittarc
 
+@aws
+region eu-north-1
+
+@macros
+architect/macro-storage-private
+add-dynamo-policies
+enable-backups
+
+@dynamo-policies
+dynamodb:DescribeTable
+dynamodb:ExportTableToPointInTime
+
+@scheduled
+daily-backup rate(1 day)
+
 @http
-# auth
 get /login
 get /logout
-
-# tweets
 get /tweets
 post /tweets
 
@@ -17,6 +29,8 @@ tweets
   content String
   name String
 
-@aws
-region eu-north-1
-  
+@enable-backups
+tweets
+
+@storage-private
+tweets-backup

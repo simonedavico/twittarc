@@ -8,21 +8,22 @@ import type { HttpHandler } from "@architect/functions";
 const ensureAuth: HttpHandler = async (req) => {
   if (!req.session.account) {
     const clientId = process.env.GITHUB_CLIENT_ID;
-    const redirectUri = process.env.GITHUB_REDIRECT;
     const baseUrl = "https://github.com/login/oauth/authorize";
+
+    console.log({ appSecret: process.env.APP_SECRET });
+    console.log({ githubClientId: process.env.GITHUB_CLIENT_ID });
 
     // we use this to make sure the request that comes back was
     // initiated by the server
     const state = jwt.sign(
       {
         provider: "github",
-        redirectUri,
       },
       process.env.APP_SECRET,
       { expiresIn: "1 hour" }
     );
 
-    const authUrl = `${baseUrl}?client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}`;
+    const authUrl = `${baseUrl}?client_id=${clientId}&state=${state}`;
 
     return {
       statusCode: 403,

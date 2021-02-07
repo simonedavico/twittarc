@@ -4,7 +4,6 @@ type GitHubOauthRequest = {
   code: string;
   clientId: string;
   clientSecret: string;
-  redirectUri: string;
 };
 
 // admittedly not the best type, but at least we get autocomplete
@@ -25,7 +24,6 @@ async function github(req: GitHubOauthRequest): Promise<GitHubAccount> {
       code: req.code,
       client_id: req.clientId,
       client_secret: req.clientSecret,
-      redirect_uri: req.redirectUri,
     },
   });
 

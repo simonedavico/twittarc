@@ -27,15 +27,13 @@ async function render(payload) {
   let main = document.getElementsByTagName("main")[0];
   main.innerHTML = html;
 
-  console.log("rendered html");
-
   // listen for enter
   let text = document.getElementById("new-tweet");
   text.addEventListener("keyup", enter);
   text.focus();
 }
 
-/** create a todo */
+/** create a tweet */
 async function enter(event) {
   if (event.key === "Enter") {
     let value = event.target.value;

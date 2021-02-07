@@ -15,7 +15,8 @@ The application is a SAM application built with [Architect](https://arc.codes).
 
 ## Feed
 
-- `GET /tweets` 
+- `GET /tweets`
+- `POST /tweets`
 
 # Setting up development environment
 
@@ -27,7 +28,6 @@ Once this is done, create a `.env` file in the root directory of the project wit
 
 ```
 GITHUB_CLIENT_SECRET=<your_client_secret>
-GITHUB_REDIRECT=http://localhost:3333/login
 GITHUB_CLIENT_ID=<your_client_id>
 ```
 
@@ -43,6 +43,26 @@ TODO
 
 TODO
 
+These have to be added to dynamopolicy
+
+- dynamodb:DescribeTable
+- dynamodb:ExportTableToPointInTime
+
 # License
 
 See [license file](./LICENSE.md)
+
+TODOS:
+
+-
+- document solution
+- setup openapi (nice to have)
+- improve APIs with pagination (nice to have)
+- CI with github actions (nice to have)
+
+DYNAMO DESIGN:
+
+partition key: user account id (get this from github -> string)
+sort key: creation date as timestamp (number)
+message: string
+name: string

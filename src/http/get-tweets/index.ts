@@ -12,7 +12,7 @@ async function tweets(req: HttpRequest) {
   return {
     statusCode: 200,
     json: {
-      tweets: tweets?.Items ?? [],
+      tweets: (tweets && tweets.Items) || [],
     },
   };
 }
