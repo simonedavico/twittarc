@@ -1,0 +1,6 @@
+{
+  "name": "daily-backup",
+  "dependencies": {
+    "@architect/functions": "^3.13.9"
+  }
+}

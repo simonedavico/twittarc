@@ -10,9 +10,6 @@ const ensureAuth: HttpHandler = async (req) => {
     const clientId = process.env.GITHUB_CLIENT_ID;
     const baseUrl = "https://github.com/login/oauth/authorize";
 
-    console.log({ appSecret: process.env.APP_SECRET });
-    console.log({ githubClientId: process.env.GITHUB_CLIENT_ID });
-
     // we use this to make sure the request that comes back was
     // initiated by the server
     const state = jwt.sign(
