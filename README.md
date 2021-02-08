@@ -106,9 +106,8 @@ Some part of the application could be improved:
 
 - The logic related to GitHub auth could be better encapsulated;
 - Logging should be improved;
-- I should probably choose a better partition key for the tweets table.
-- There are not enough tests: I have to figure out how to forge a session cookie to check for
-  authenticated scenarios without requiring GitHub credentials.
+- I should probably choose a better partition key for the tweets table, or a different database entirely; there are alternative solutions for time series-like data, but dynamo was the most convenient, being already integrated into Architect.
+- There are not enough tests: I have to figure out how to forge a session cookie to check for authenticated scenarios without requiring GitHub credentials.
 
 # License
 
