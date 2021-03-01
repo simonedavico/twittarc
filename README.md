@@ -56,6 +56,8 @@ Run `npm run deploy -- staging --dry-run` to generate the CloudFormation templat
 
 Run `npm run deploy -- staging` to generate the CloudFormation template and deploy to AWS.
 
+To clean up the deployment, run `arc destroy --name twittarc --force`.
+
 ## Monitoring logs
 
 All functions are configured to send logs to CloudWatch.
